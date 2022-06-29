@@ -8,6 +8,10 @@ const app = express();
 // import router categories
 const categoriesRouter = require('./app/api/v1/categories/router');
 
+// middlewares
+const notFoundMiddleware = require('./app/middlewares/not-found');
+const handleErrorMiddleware = require('./app/middlewares/handler-error');
+
 // membuat variabel v1
 const v1 = '/api/v1/cms';
 
