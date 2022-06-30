@@ -1,49 +1,72 @@
-// import model category
-const Categories = require('./model');
+// import services categories
+const { getAllCategories, getOneCategories, updateCategories, createCategories, deleteCategories } = require('../../../services/mongoose/categories');
 
-// create categories
-const create = async (req, res, next) => {
-  try {
-    let { name } = req.body;
+const { StatusCodes } = require('http-status-codes');
 
-    let category = new Categories({ name });
+const create = async (req, res) => {
+	try {
+		const result = await createCategories(req);
 
-    await category.save();
-
-    return res.json(category);
-
-    // Atau bisa dengan
-    /*
-    const result = await Categories.create({ name })
-    res.status.json({
-      data: result
-    })
-    */
-  } catch (err) {
-    if (err && err.name === 'ValidationError') {
-      return res.json({
-        message: err.message,
-        fields: err.errors,
-      });
-    }
-
-    next(err);
-  }
+		res.status(StatusCodes.CREATED).json({
+			data: result,
+		});
+	} catch (err) {
+		next(err);
+	}
 };
 
-const index = async (req, res, next) => {
-  try {
-    const result = await Categories.find();
-    res.status(200).json({
-      data: result,
-    });
-  } catch (error) {
-    next(error);
-  }
+const index = async (req, res) => {
+	try {
+		const result = await getAllCategories(req);
+
+		res.status(StatusCodes.OK).json({
+			data: result,
+		});
+	} catch (err) {
+		next(err);
+	}
 };
 
-// (6) Export fungsi create pada controller categories
+const find = async (req, res) => {
+	try {
+		const result = await getOneCategories(req);
+
+		res.status(StatusCodes.OK).json({
+			data: result,
+		});
+	} catch (err) {
+		next(err);
+	}
+};
+
+const update = async (req, res) => {
+	try {
+		const result = await updateCategories(req);
+
+		res.status(StatusCodes.OK).json({
+			data: result,
+		});
+	} catch (err) {
+		next(err);
+	}
+};
+
+const destroy = async (req, res) => {
+	try {
+		const result = await deleteCategories(req);
+
+		res.status(StatusCodes.OK).json({
+			data: result,
+		});
+	} catch (err) {
+		next(err);
+	}
+};
+
 module.exports = {
-  index,
-  create,
+	index,
+	find,
+	update,
+	destroy,
+	create,
 };

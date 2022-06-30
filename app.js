@@ -30,4 +30,8 @@ app.get('/', (req, res) => {
 // gunakan categories router
 app.use(v1, categoriesRouter);
 
+// middlewares
+app.use(notFoundMiddleware);
+app.use(handleErrorMiddleware);
+
 module.exports = app;

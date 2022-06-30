@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express();
+const { create } = require('./controller');
+const upload = require('../../../middlewares/multer');
 
-router.get('/categories', (req, res) => {
-  res.status(200).json({
-    message: 'Halaman Categories',
-  });
-});
+router.post('/', upload.single('avatar'), create);
+module.exports = router;
