@@ -5,14 +5,14 @@ const logger = require('morgan');
 
 const app = express();
 
-// import router categories
+// router
 const categoriesRouter = require('./app/api/v1/categories/router');
+const imageRouter = require('./app/api/v1/images/router');
 
 // middlewares
 const notFoundMiddleware = require('./app/middlewares/not-found');
 const handleErrorMiddleware = require('./app/middlewares/handler-error');
 
-// membuat variabel v1
 const v1 = '/api/v1/cms';
 
 app.use(logger('dev'));
@@ -22,13 +22,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.status(200).json({
-    message: 'Welcome to api semina',
-  });
+	res.status(200).json({
+		message: 'Welcome to api semina',
+	});
 });
 
-// gunakan categories router
 app.use(v1, categoriesRouter);
+app.use(v1, imageRouter);
 
 // middlewares
 app.use(notFoundMiddleware);
