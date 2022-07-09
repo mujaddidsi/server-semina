@@ -108,5 +108,5 @@ module.exports = {
 	getOneTalents,
 	updateTalents,
 	deleteTalents,
-	checkingTalents,
+	checkingTalents, // <-- export function checking talents
 };
