@@ -23,7 +23,7 @@ const ticketCategoriesSchema = new mongoose.Schema({
 	},
 });
 
-const EventSchema = new mongoose.Schema(
+const eventSchema = new mongoose.Schema(
 	{
 		title: {
 			type: String,
@@ -77,4 +77,4 @@ const EventSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
-module.exports = mongoose.model('Event', EventSchema);
+module.exports = mongoose.model('Event', eventSchema);

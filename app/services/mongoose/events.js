@@ -98,6 +98,14 @@ const updateEvents = async (req) => {
 	await checkingCategories(category);
 	await checkingTalents(talent);
 
+	// cari event berdasarkan field id
+	const checkEvent = await Events.findOne({
+		_id: id,
+	});
+
+	// jika id result false / null maka akan menampilkan error `Tidak ada pembicara dengan id` yang dikirim client
+	if (!checkEvent) throw new NotFoundError(`Tidak ada acara dengan id :  ${id}`);
+
 	// cari Events dengan field name dan id selain dari yang dikirim dari params
 	const check = await Events.findOne({
 		title,
@@ -124,9 +132,6 @@ const updateEvents = async (req) => {
 		},
 		{ new: true, runValidators: true }
 	);
-
-	// jika id result false / null maka akan menampilkan error `Tidak ada pembicara dengan id` yang dikirim client
-	if (!result) throw new NotFoundError(`Tidak ada acara dengan id :  ${id}`);
 
 	return result;
 };
