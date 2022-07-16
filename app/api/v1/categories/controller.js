@@ -15,7 +15,7 @@ const create = async (req, res, next) => {
 	}
 };
 
-const index = async (req, res) => {
+const index = async (req, res, next) => {
 	try {
 		const result = await getAllCategories(req);
 
@@ -27,7 +27,7 @@ const index = async (req, res) => {
 	}
 };
 
-const find = async (req, res) => {
+const find = async (req, res, next) => {
 	try {
 		const result = await getOneCategories(req);
 
@@ -39,7 +39,7 @@ const find = async (req, res) => {
 	}
 };
 
-const update = async (req, res) => {
+const update = async (req, res, next) => {
 	try {
 		const result = await updateCategories(req);
 
