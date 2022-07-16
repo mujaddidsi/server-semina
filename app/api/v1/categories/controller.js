@@ -3,7 +3,7 @@ const { getAllCategories, getOneCategories, updateCategories, createCategories, 
 
 const { StatusCodes } = require('http-status-codes');
 
-const create = async (req, res) => {
+const create = async (req, res, next) => {
 	try {
 		const result = await createCategories(req);
 

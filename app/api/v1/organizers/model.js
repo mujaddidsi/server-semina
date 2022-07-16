@@ -3,7 +3,7 @@ const { model, Schema } = mongoose;
 
 let organizerSchema = Schema(
 	{
-		name: {
+		organizer: {
 			type: String,
 			required: [true, 'Penyelenggara harus diisi'],
 		},
