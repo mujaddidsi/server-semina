@@ -10,6 +10,6 @@ router.put('/active', activeParticipant);
 router.get('/events', getAllLandingPage);
 router.get('/events/:id', getDetailLandingPage);
 router.get('/orders', authenticateParticipant, getDashboard);
-// router.post('/checkout', authenticateParticipant, checkout);
+router.post('/checkout', authenticateParticipant, checkout);
 
 module.exports = router;
